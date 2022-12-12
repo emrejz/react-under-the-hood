@@ -15,6 +15,10 @@ const React = (function () {
     return [hooks[localIndex], setState];
   }
 
+  function useRef(val) {
+    return useState({ current: val })[0];
+  }
+
   function useEffect(cb, deps) {
     let hasChanged = true;
     const oldDeps = hooks[index];
@@ -36,6 +40,7 @@ const React = (function () {
     useState,
     render,
     useEffect,
+    useRef,
   };
 })();
 
@@ -46,13 +51,15 @@ const Component = () => {
   const [count, setCount] = React.useState(1);
   const [text, setText] = React.useState("react");
 
+  const ref = React.useRef("kayacan");
+
   React.useEffect(() => {
     console.log("runs if any deps changes", count, text);
   }, [count, text]);
 
   return {
     render: () => {
-      console.log(count, text);
+      console.log(count, text, ref);
     },
     click: () => {
       setCount(count + 1);
