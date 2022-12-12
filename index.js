@@ -40,6 +40,9 @@ const React = (function () {
 })();
 
 const Component = () => {
+  // why we have some rules on react for hooks because;
+  // we cant put hook within an if statement because sometimes index can be 0 sometimes can be 1 and so on.
+  // it is unpredictable and index is important as u can see above
   const [count, setCount] = React.useState(1);
   const [text, setText] = React.useState("react");
 
