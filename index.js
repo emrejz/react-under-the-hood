@@ -15,6 +15,16 @@ const React = (function () {
     return [hooks[localIndex], setState];
   }
 
+  function useEffect(cb, deps) {
+    let hasChanged = true;
+    const oldDeps = hooks[index];
+    if (oldDeps) {
+      hasChanged = deps?.some((dep, i) => !Object.is(dep, oldDeps[i])); // react uses Object.is() to compare dependencies and if the values are changed.
+    }
+    if (hasChanged) cb();
+    hooks[index] = deps;
+  }
+
   function render(Comp) {
     index = 0; // we need to back to zero because every rendering increases the index and adds initVal into the hooks, and even if we use the set func, we will always get initVal.
     const Component = Comp();
@@ -25,12 +35,17 @@ const React = (function () {
   return {
     useState,
     render,
+    useEffect,
   };
 })();
 
 const Component = () => {
   const [count, setCount] = React.useState(1);
   const [text, setText] = React.useState("react");
+
+  React.useEffect(() => {
+    console.log("runs if any deps changes", count, text);
+  }, [count, text]);
 
   return {
     render: () => {
