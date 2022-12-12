@@ -1,0 +1,20 @@
+{
+  "name": "react-under-the-hood",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:nodemon": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emrejz/react-under-the-hood.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emrejz/react-under-the-hood/issues"
+  },
+  "homepage": "https://github.com/emrejz/react-under-the-hood#readme"
+}
